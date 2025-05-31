@@ -1,0 +1,311 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #FFFBDE;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #096B68;
+  color: #EEEEEE;
+  padding: 12px;
+}
+
+.contents {
+  padding: 20px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 80%;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+h2 {
+  font-size: 30px;
+  color: #096B68;
+}
+
+.book-menu {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 20px 20px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.form-element {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 2px;
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #096B68;
+}
+
+.form-element-checkbox {
+  display: flex;
+  text-align: left;
+  gap: 10px;
+  margin: 10px 0px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #096B68;
+}
+
+#bookFormTitle, #bookFormAuthor, #bookFormYear {
+  font-family: 'Josefin Sans', sans-serif;
+  width: 100%;
+  font-size: 16px;
+  padding: 5px;
+}
+
+#bookFormSubmit {
+  font-size: 16px;
+  color: #EEEEEE;
+  padding: 5px 20px;
+  border-radius: 4px;
+  background-color: #096B68;
+}
+
+#bookFormSubmit:hover {
+  background-color: #129990;
+  transition: 0.2s;
+
+}
+
+#bookFormSubmit span {
+  font-weight: bold;
+}
+
+#searchBook {
+  font-size: 16px;
+  font-weight: bold;
+  color: #096B68;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0 10px;
+}
+
+#searchBookTitle {
+  font-family: 'Josefin Sans', sans-serif;
+  width: 60%;
+  font-size: 16px;
+  padding: 5px;
+}
+
+#searchSubmit {
+  width: 20%;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 16px;
+  color: #EEEEEE;
+  background-color: #096B68;
+  padding: 7px 0;
+  border-radius: 4px;
+}
+
+#searchSubmit:hover {
+  background-color: #129990;
+  transition: 0.2s;
+}
+
+.bookItem {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: center;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.bookItemTitle {
+  margin: 5px;
+  font-size: 20px;
+}
+
+.bookItemAuthor, .bookItemYear {
+  margin: 5px;
+  font-size: 16px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.undoButton {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 16px;
+  background-color: #16C47F;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.undoButton:hover {
+  background-color: #1aef9a;
+  transition: 0.2s;
+}
+
+.deleteButton {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 16px;
+  background-color: #ff4e3e;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.deleteButton:hover {
+  background-color: #ff6c5f;
+  transition: 0.2s;
+}
+
+.editButton {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 16px;
+  background-color: #fed96a;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.editButton:hover {
+  background-color: #ffe493;
+  transition: 0.2s;
+}
+
+.doneButton {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 16px;
+  background-color: #16C47F;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.doneButton:hover {
+  background-color: #1aef9a;
+  transition: 0.2s;
+}
+
+#editBookOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#editBookOverlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#editBookModal {
+  background: #FFFBDE;
+  padding: 24px 32px;
+  border-radius: 8px;
+  min-width: 700px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  transform: translateY(-40px);
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(.4,2,.6,1), opacity 0.3s cubic-bezier(.4,2,.6,1);
+}
+
+#editBookOverlay.active 
+#editBookModal {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#editBookForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.editBookFormElement {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 2px;
+  margin: 0 0 15px 0;
+}
+
+.editBookFormElement label {
+  color: #096B68;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.editBookFormElement input {
+  width: 100%;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 16px;
+  padding: 5px;
+  margin: 0 0 15px 0;
+}
+
+#editBookModalAction {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+#acceptButton {
+  background: #16C47F;
+  color: black;
+  border: 1px solid;
+  padding: 6px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#acceptButton:hover {
+  background: #1aef9a;
+  transition: 0.2s;
+}
+
+#cancelButton {
+  background: #ff4e3e;
+  color: black;
+  border: 1px solid;
+  padding: 6px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#cancelButton:hover {
+  background-color: #ff6c5f;
+  transition: 0.2s;
+}
